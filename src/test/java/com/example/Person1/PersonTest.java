@@ -1,21 +1,26 @@
 package com.example.Person1;
 
+import com.example.Person1.controller.PersonController;
 import com.example.Person1.dto.PersonDTO;
 import com.example.Person1.model.Person;
 import com.example.Person1.repository.PersonRepository;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
+import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 import java.time.LocalDate;
 
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
-//@ExtendWith(SpringExtension.class)
-//@DataJpaTest
-//@WebMvcTest(PersonController.class)
+@ExtendWith(SpringExtension.class)
+@DataJpaTest
+@WebMvcTest(PersonController.class)
 @SpringBootTest(classes = PersonApplication.class)
 public class PersonTest {
     @Autowired
@@ -49,7 +54,6 @@ public class PersonTest {
         personRepository.save(person);
         Person fetchedProduct = personRepository.findById(person.getId()).get();
         assertNotNull(person.getId());
-//        assertEquals(8  , fetchedProduct.getId());
 
     }
 

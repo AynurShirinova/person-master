@@ -8,6 +8,9 @@ import com.example.Person1.repository.NationalityRepository;
 import com.example.Person1.repository.PersonRepository;
 import com.example.Person1.repository.PlaceOfBirthRepository;
 import com.example.Person1.service.PersonService;
+import lombok.extern.slf4j.Slf4j;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -16,6 +19,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
+@Slf4j
 public class PersonController {
 
     private final PersonService personService;
@@ -33,9 +37,11 @@ public class PersonController {
     public PersonController(PersonService personService) {
         this.personService = personService;
     }
+    private static final Logger logger = LoggerFactory.getLogger(PersonController.class);
 
     @GetMapping("/persons")
     List<PersonDTO> findAll() {
+        log.info("findAll() methodu run oldu...");
       throw new ApiRequestException("cannot get all person with custom eception");
        // return   personService.getAllPersons();
     }
